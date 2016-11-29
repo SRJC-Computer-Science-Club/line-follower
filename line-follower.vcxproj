@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C5F80730-F44F-4478-BDAE-6634EFC2CA88}</ProjectGuid>
+    <RootNamespace>$safeprojectname$</RootNamespace>
+    <ProjectName>line-follower</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>
+    </PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>
+    </PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\avr;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\util;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\utils;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\avr;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\tools\avr/../arm/bin/..\arm-none-eabi\include;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\line-follower;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\aif2jys0.atj\Micro Platforms\default\debuggers\VM_DBG;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\aif2jys0.atj\Micro Platforms\default\debuggers;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\line-follower\__vm\.line-follower.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>__HARDWARE_MK20dx256__;__HARDWARE_MK20DX256__;_VMDEBUG=1;__MK20DX256__;TEENSYDUINO=127;ARDUINO=10607;F_CPU=96000000;ARDUINO_ARCH_AVR;USB_SERIAL;LAYOUT_US_ENGLISH;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\avr;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\util;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\utils;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3\avr;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\tools\avr/../arm/bin/..\arm-none-eabi\include;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\line-follower;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\cores\teensy3;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\libraries;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\arduino-1.6.7\hardware\teensy\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\aif2jys0.atj\Micro Platforms\default\debuggers;C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>C:\Users\Joshua\Desktop\Programs\Portable Programs\Arduino\projects\line-follower\__vm\.line-follower.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>__HARDWARE_MK20dx256__;__HARDWARE_MK20DX256__;__MK20DX256__;TEENSYDUINO=127;ARDUINO=10607;F_CPU=96000000;ARDUINO_ARCH_AVR;USB_SERIAL;LAYOUT_US_ENGLISH;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="VisualMicro" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="line-follower.ino">
+      <FileType>CppCode</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="__vm\.line-follower.vsarduino.h" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
