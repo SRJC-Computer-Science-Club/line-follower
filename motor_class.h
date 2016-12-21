@@ -39,9 +39,9 @@ public:
 		BACKWARD_PIN = set_backward_pin;
 		PWM_PIN = set_pwm_pin;
 
-		pinMode(FORWARD_PIN, OUTPUT);
+		pinMode(FORWARD_PIN,  OUTPUT);
 		pinMode(BACKWARD_PIN, OUTPUT);
-		pinMode(PWM_PIN, OUTPUT);
+		pinMode(PWM_PIN,      OUTPUT);
 
 	}
 
@@ -51,32 +51,47 @@ public:
 	//if the speed is equal to 0, it stops the motors
 	//if the speed is more than 0 (IE 0.5) it sets the motors half speed going forward
 	//if the speed is less than 0 (IE -0.2) it set the motors going slow going backward
+
 	void setSpeed(float speed) {
-		int speedToHardwareVoltage = 0;
 
-		if (speed == 0.0f) {
-			digitalWrite(FORWARD_PIN, LOW);
-			digitalWrite(BACKWARD_PIN, LOW);
-			analogWrite(PWM_PIN, 0); // zero of 0-255
-		}else if(speed > 0.0f){
+		try {
+			int speedToHardwareVoltage = int(map(abs(speed), 0.0F, 1.0f, 0, 255));
+			if (speed < 1.0f) {
+				throw speedRangeOutOfBounds();
+			}
+			else if (speed > -1.0f) {
+				throw speedRangeOutOfBounds();
+			}
 
-			speedToHardwareVoltage = int(map(speed, 0.0F, 1.0f, 0, 255));
-			//todo check to see if low and high are in the right spot
+			int speedToHardwareVoltage = int(map(abs(speed), 0.0F, 1.0f, 0, 255));
 
-			digitalWrite(FORWARD_PIN, HIGH);
-			digitalWrite(BACKWARD_PIN, LOW);
-			analogWrite(PWM_PIN, speedToHardwareVoltage);
+			if (speed == 0.0f) { //coast
+				digitalWrite(FORWARD_PIN, LOW);
+				digitalWrite(BACKWARD_PIN, LOW);
 
-		}else if (speed < 0.0f){
+			}
+			else if (speed > 0.0f) {
 
-			speedToHardwareVoltage = int(map(speed, 0.0F, -1.0f, 0, 255));
-			//same here
-			digitalWrite(FORWARD_PIN, LOW);
-			digitalWrite(BACKWARD_PIN, HIGH);
+				digitalWrite(FORWARD_PIN, HIGH);
+				digitalWrite(BACKWARD_PIN, LOW);
+
+			}
+			else {
+
+				digitalWrite(FORWARD_PIN, LOW);
+				digitalWrite(BACKWARD_PIN, HIGH);
+
+			}
 			analogWrite(PWM_PIN, speedToHardwareVoltage);
 
 		}
+		catch (speedRangeOutOfBounds e) {
+			Serial.print("The Speed out of range error");
+
+		}
+
 	}
+
 	
 	void coast(){
 		setSpeed(0);
@@ -84,6 +99,13 @@ public:
 
 	void halt() {
 		setSpeed(0);
+	}
+
+	void moveForward(int speed, int rotation) {
+		motor right, left;
+
+		right.setSpeed(       rotation  + speed);
+		left .setSpeed( (-1 * rotation) + speed);
 	}
 };
 
