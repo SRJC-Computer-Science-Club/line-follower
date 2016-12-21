@@ -111,4 +111,9 @@ public:
 
 
 #endif
-
+/*
+insigned int map(float x, float in_min, float in_max, long out_min, long out_max)
+{
+  return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+}
+*/
