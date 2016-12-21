@@ -13,6 +13,11 @@
 	#include "WProgram.h"
 #endif
 
+int map(float x, float in_min, float in_max, float out_min, float out_max)
+{
+return ceil((min(x,1) - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+}
+
 class motor
 {
 
@@ -111,9 +116,3 @@ public:
 
 
 #endif
-/*
-insigned int map(float x, float in_min, float in_max, long out_min, long out_max)
-{
-  return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-}
-*/
