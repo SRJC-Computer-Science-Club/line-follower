@@ -83,7 +83,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Led.h" />
     <ClInclude Include="__vm\.line-follower.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Led.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
