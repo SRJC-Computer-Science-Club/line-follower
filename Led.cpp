@@ -51,7 +51,7 @@ void Led::setHSV( float hue, float sat, float val )
 	int h = int( hue * 6 );
 	float x = chroma * ( 1 - abs( h % 2 - 1 ) );
 
-	float r = 0, g = 0, b = 0;
+	float r = 0.0f, g = 0.0f, b = 0.0f;
 
 	switch( h )
 	{
