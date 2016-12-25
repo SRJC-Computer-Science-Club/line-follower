@@ -4,6 +4,8 @@ class Led
 {
 public:
 	
+	Led();
+
 	Led( int RED_PIN, int GREEN_PIN, int BLUE_PIN );
 
 	// red, green, blue in range [0,255]

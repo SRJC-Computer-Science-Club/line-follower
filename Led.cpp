@@ -5,6 +5,14 @@
 #define MAX_VALUE 255
 
 
+Led::Led() :
+	RED_PIN{ 0 },
+	GREEN_PIN{ 0 },
+	BLUE_PIN{ 0 }
+{}
+
+
+
 Led::Led( int RED_PIN, int GREEN_PIN, int BLUE_PIN ) :
 	RED_PIN{ RED_PIN },
 	GREEN_PIN{ GREEN_PIN },
