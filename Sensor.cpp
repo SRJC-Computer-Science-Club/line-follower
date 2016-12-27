@@ -4,6 +4,7 @@ namespace LFRobot
 {
 	Sensor::Sensor(int inPin)
 	{
+		pinMode(pin, INPUT);
 		pin = inPin;
 	}
 
