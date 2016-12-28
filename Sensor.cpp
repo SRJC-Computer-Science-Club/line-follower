@@ -3,9 +3,10 @@
 namespace LFRobot
 {
 	Sensor::Sensor(int inPin)
-	{
-		pinMode(pin, INPUT);
+	{	
 		pin = inPin;
+		pinMode(pin, INPUT);
+	
 	}
 
 	void Sensor::setMode(SensorMode mode)
@@ -23,9 +24,7 @@ namespace LFRobot
 
 	bool Sensor::isLow()
 	{
-		if (digitalRead(pin) == LOW)
-		{
-			return true;
-		}
+		return digitalRead(pin) == LOW;
+	
 	}
 }
