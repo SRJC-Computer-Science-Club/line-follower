@@ -84,9 +84,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\Sensor.h" />
+    <ClInclude Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\SensorArray.h" />
     <ClInclude Include="__vm\.line-follower.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SensorArray.cpp" />
     <ClCompile Include="Sensor.cpp" />
   </ItemGroup>
   <PropertyGroup>
