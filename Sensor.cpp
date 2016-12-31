@@ -1,12 +1,12 @@
-#include <Sensor.h>
+#include "Sensor.h"
 
 namespace LFRobot
 {
 	Sensor::Sensor(int inPin)
-	{	
-		pin = inPin;
+		: pin(inPin) // pin is given the value of the argument
+	{
 		pinMode(pin, INPUT);
-	
+
 	}
 
 	void Sensor::setMode(SensorMode mode)
@@ -24,7 +24,8 @@ namespace LFRobot
 
 	bool Sensor::isLow()
 	{
+		// returns false if not LOW
 		return digitalRead(pin) == LOW;
-	
+
 	}
 }
