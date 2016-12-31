@@ -83,10 +83,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SenorArray.h" />
     <ClInclude Include="SensorArray.h" />
     <ClInclude Include="__vm\.line-follower.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SenorArray.cpp" />
     <ClCompile Include="SensorArray.cpp" />
   </ItemGroup>
   <PropertyGroup>
