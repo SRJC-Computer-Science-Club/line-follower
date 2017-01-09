@@ -14,9 +14,12 @@ namespace LFRobot
 		SensorArray();
 		void prepSensors();
 
+		 void calcSensorValues();
+	
 
 	private:
 		int pins[NUMBER_OF_SENSORS];
+		int sensorValues[NUMBER_OF_SENSORS];
 		vector<Sensor*> sensors = vector<Sensor*>();
 
 	};
