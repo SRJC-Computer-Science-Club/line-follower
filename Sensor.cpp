@@ -25,7 +25,7 @@ namespace LFRobot
 	bool Sensor::isLow()
 	{
 		// returns false if not LOW
-		return digitalRead(pin) == LOW;
-
+		//return digitalRead(pin) == LOW;
+		return true;
 	}
 }
