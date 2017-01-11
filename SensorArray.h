@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <Arduino.h>
 #include "Sensor.h"
 
 using namespace std;

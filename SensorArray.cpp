@@ -1,37 +1,42 @@
 #include <vector>
 #include "SensorArray.h"
 
+
 using namespace std;
 
 namespace LFRobot
 {
-	SensorArray::SensorArray()
+	SensorArray::SensorArray(int pins[])
 	{
-		vector<Sensor*> sensors = vector<Sensor*>();
+		vector<Sensor> sensors = vector<Sensor>();
+
+		sensors.push_back(Sensor(0));
 
 
 
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensors.push_back(new Sensor(i));
+			sensors.push_back(Sensor(pins[i]));
 		}
 	}
 
 
 	void SensorArray::prepSensors()
 	{
-	
+
+	//	Sensor sensorArray[8] = { Sensor(pins[0]), Sensor(pins[1]), Sens };
+
+
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
 			sensors[i]-> setMode(OUT);
 		}
-
 	}
 
 
-	void SensorArray::calcSensorValues()
+	void SensorArray::readSensorValues()
 	{
-		long startTime, endTime, lengthOfTime;
+		long startTime, endTime, lengthOfTime; 
 		int tempSensorValues[NUMBER_OF_SENSORS] = { 0 };
 		int numSensorsFinished = 0;
 
