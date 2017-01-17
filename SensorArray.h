@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+
 #include <Arduino.h>
 #include "Sensor.h"
 
@@ -12,16 +12,17 @@ namespace LFRobot
 	{
 	public:
 
-		SensorArray();
+		SensorArray(int pins[]);
+		~SensorArray();
 		void prepSensors();
-
-		 void calcSensorValues();
+		void readSensorValues();
+		int getLineOffset();
 	
 
 	private:
+		Sensor* sensorArray[8];
 		int pins[NUMBER_OF_SENSORS];
 		int sensorValues[NUMBER_OF_SENSORS];
-		vector<Sensor*> sensors = vector<Sensor*>();
 
 	};
 

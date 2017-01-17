@@ -1,4 +1,4 @@
-#include <Sensor.h>
+#include "Sensor.h"
 
 namespace LFRobot
 {
@@ -24,8 +24,6 @@ namespace LFRobot
 
 	bool Sensor::isLow()
 	{
-		// returns false if not LOW
-		//return digitalRead(pin) == LOW;
-		return true;
+		return digitalRead(pin) == LOW;
 	}
 }
