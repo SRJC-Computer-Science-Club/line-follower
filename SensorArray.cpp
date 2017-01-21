@@ -1,35 +1,45 @@
-#include <vector>
 #include "SensorArray.h"
+#include "Sensor.h"
+
 
 using namespace std;
 
 namespace LFRobot
 {
-	SensorArray::SensorArray()
+	SensorArray::SensorArray(int pins[])
 	{
-		vector<Sensor*> sensors = vector<Sensor*>();
-
-
+		Sensor* sensorArray[NUMBER_OF_SENSORS];
 
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensors.push_back(new Sensor(i));
+			sensorArray[i] = new Sensor(pins[i]);
+		}
+	}
+
+	SensorArray::~SensorArray()
+	{
+		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		{
+			delete sensorArray[i];
 		}
 	}
 
 
 	void SensorArray::prepSensors()
 	{
-	
+
+		//	Sensor sensorArray[8] = { Sensor(pins[0]), Sensor(pins[1]), Sens };
+
+
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensors[i]-> setMode(OUT);
-		}
+			sensorArray[i]->setMode(OUT);
 
+		}
 	}
 
 
-	void SensorArray::calcSensorValues()
+	void SensorArray::readSensorValues()
 	{
 		long startTime, endTime, lengthOfTime;
 		int tempSensorValues[NUMBER_OF_SENSORS] = { 0 };
@@ -38,19 +48,18 @@ namespace LFRobot
 		startTime = micros();
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensors[i]->setMode(IN);
+			sensorArray[i]->setMode(IN);
 		}
-		while(numSensorsFinished < 8)
+		while (numSensorsFinished < NUMBER_OF_SENSORS)
 		{
-			numSensorsFinished = 0;
-
+			
 			for (int sensorNum = 0; sensorNum < NUMBER_OF_SENSORS; sensorNum++)
 			{
 
 				if (tempSensorValues[sensorNum] == 0)// if array element is empty.
 				{
 
-					if (sensors[sensorNum]->isLow) // if low, record time.
+					if (sensorArray[sensorNum]->isLow) // if low, record time.
 					{
 
 						endTime = micros();
@@ -58,34 +67,28 @@ namespace LFRobot
 
 						tempSensorValues[sensorNum] = lengthOfTime;
 
-						numSensorsFinished++;/// is this faster or slower(?)
+						numSensorsFinished++;/// is it faster or slower to have this here too(?)
+
 					}
-				}
-				else
-				{
-					numSensorsFinished++; //counting how many sensors are done.
 				}
 			}
 
 
 		}
+
 		for (int i = 0; i < 8; i++)
 		{
 			sensorValues[i] = tempSensorValues[i];
-			Serial.print(sensorValues[i] + " ");
+
 		}
 	}
 
 
 
-	//void test()
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		sensorValues[i]
-	//			Serial.print(sensorValues[i])
-	//	}
-	//
-	//}
 
+		int SensorArray::getLineOffset()
+		{
+			27;
+		}
+	
 }
