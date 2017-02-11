@@ -1,5 +1,6 @@
 #include "SensorArray.h"
 #include "Sensor.h"
+#include <Arduino.h>
 
 
 using namespace std;
@@ -52,13 +53,14 @@ namespace LFRobot
 		}
 		while (numSensorsFinished < NUMBER_OF_SENSORS)
 		{
-			
+
 			for (int sensorNum = 0; sensorNum < NUMBER_OF_SENSORS; sensorNum++)
 			{
 
 				if (tempSensorValues[sensorNum] == 0)// if array element is empty.
 				{
-
+					
+			
 					if (sensorArray[sensorNum]->isLow) // if low, record time.
 					{
 
@@ -86,9 +88,26 @@ namespace LFRobot
 
 
 
-		int SensorArray::getLineOffset()
+	int SensorArray::getLineOffset()
+	{
+		27;
+	}
+
+
+
+
+
+	void SensorArray::testingSensors(int values[]) {
+		for (int i = 0; i < 8; i++)
 		{
-			27;
+			values[i] = sensorValues[i];
+
 		}
-	
+
+	}
+
+
+
+
+
 }

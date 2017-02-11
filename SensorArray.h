@@ -17,6 +17,7 @@ namespace LFRobot
 		void prepSensors();
 		void readSensorValues();
 		int getLineOffset();
+		void testingSensors(int values[]);
 	
 
 	private:
