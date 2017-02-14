@@ -12,11 +12,11 @@ class Battery
 {
 	private:
 		int pin;
-		int powerAverage[];
+		int batteryReadings[BATTER_N_READINGS];
+		int powerAverage;
 	public:
 		Battery ();
-		~Battery ();
 		bool checkBattery ();
-
+		void readVoltage ();
 };
 
