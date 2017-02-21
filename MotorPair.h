@@ -4,10 +4,9 @@
 
 class MotorPair
 {
-	motor *left, *right;
+	motor left, right;
 public:
 	MotorPair();
 	~MotorPair();
 	void moveForward(float speed, float offset);
 };
-

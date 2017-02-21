@@ -4,14 +4,13 @@
 
 MotorPair::MotorPair()
 {
-	left = new motor();
-	right = new motor();
+	left = motor();
+	right = motor();
 }
 
 
 MotorPair::~MotorPair()
 {
-	delete left, right;
 }
 
 
