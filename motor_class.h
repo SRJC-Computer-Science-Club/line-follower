@@ -34,6 +34,12 @@ public:
 	~motor() {
 	}
 
+
+	 int map(float x, float in_min, float in_max, long out_min, long out_max)
+	{
+		return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+	}
+
 	motor(int set_forward_pin, int set_backward_pin, int set_pwm_pin) {
 		FORWARD_PIN = set_forward_pin;
 		BACKWARD_PIN = set_backward_pin;
@@ -54,29 +60,25 @@ public:
 
 	void setSpeed(float speed) {
 
-		try {
-			int speedToHardwareVoltage = int(map(abs(speed), 0.0F, 1.0f, 0, 255));
-			if (speed < 1.0f) {
-				throw speedRangeOutOfBounds();
-			}
-			else if (speed > -1.0f) {
-				throw speedRangeOutOfBounds();
+		//try {
+			int speedToHardwareVoltage = int(map(fabs(speed), 0.0F, 1.0f, 0, 255));
+			if (speed > 1.0f || speed < -1.0f) {
+				//throw speedRangeOutOfBounds();
+
 			}
 
-			int speedToHardwareVoltage = int(map(abs(speed), 0.0F, 1.0f, 0, 255));
+			//int speedToHardwareVoltage = int(map(fabs(speed), 0.0F, 1.0f, 0, 255));
 
 			if (speed == 0.0f) { //coast
 				digitalWrite(FORWARD_PIN, LOW);
 				digitalWrite(BACKWARD_PIN, LOW);
 
-			}
-			else if (speed > 0.0f) {
+			}else if (speed > 0.0f) {
 
 				digitalWrite(FORWARD_PIN, HIGH);
 				digitalWrite(BACKWARD_PIN, LOW);
 
-			}
-			else {
+			}else{
 
 				digitalWrite(FORWARD_PIN, LOW);
 				digitalWrite(BACKWARD_PIN, HIGH);
@@ -84,11 +86,11 @@ public:
 			}
 			analogWrite(PWM_PIN, speedToHardwareVoltage);
 
-		}
-		catch (speedRangeOutOfBounds e) {
-			Serial.print("The Speed out of range error");
+		//}
+		//catch (speedRangeOutOfBounds e) {
+			//Serial.print("The Speed out of range error");
 
-		}
+//s		}
 
 	}
 
@@ -111,9 +113,3 @@ public:
 
 
 #endif
-/*
-insigned int map(float x, float in_min, float in_max, long out_min, long out_max)
-{
-  return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-}
-*/
