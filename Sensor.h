@@ -8,14 +8,14 @@ namespace LFRobot
 	{
 		public:
 			
-			Sensor(int inPin);
+			Sensor(int inPin, float inPosition);
 
 			void setMode(SensorMode mode);
 			bool isLow();
+			float getPosition();
 
 		private:
-
 			int pin;
-
+			float position;
 	};
 }

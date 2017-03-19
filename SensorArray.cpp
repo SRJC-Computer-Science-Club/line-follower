@@ -6,13 +6,13 @@ using namespace std;
 
 namespace LFRobot
 {
-	SensorArray::SensorArray(int pins[])
+	SensorArray::SensorArray(const int pins[])
 	{
 		Sensor* sensorArray[NUMBER_OF_SENSORS];
 
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensorArray[i] = new Sensor(pins[i]);
+			sensorArray[i] = new Sensor(pins[i], -1 + 2*i / (NUMBER_OF_SENSORS - 1));
 		}
 	}
 
@@ -27,15 +27,16 @@ namespace LFRobot
 
 	void SensorArray::prepSensors()
 	{
-
-		//	Sensor sensorArray[8] = { Sensor(pins[0]), Sensor(pins[1]), Sens };
-
-
+		
+	
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensorArray[i]->setMode(OUT);
-
+			
+		pinMode(pins[i], OUTPUT);
+		digitalWrite(pins[i], HIGH);
+		//	sensorArray[1]->setMode(OUT);
 		}
+	
 	}
 
 
@@ -48,8 +49,10 @@ namespace LFRobot
 		startTime = micros();
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
-			sensorArray[i]->setMode(IN);
+			pinMode(pins[i], INPUT);
+		//	sensorArray[i]->setMode(IN);
 		}
+		
 		while (numSensorsFinished < NUMBER_OF_SENSORS)
 		{
 			
@@ -58,25 +61,25 @@ namespace LFRobot
 
 				if (tempSensorValues[sensorNum] == 0)// if array element is empty.
 				{
-
-					if (sensorArray[sensorNum]->isLow) // if low, record time.
+					
+					if (digitalRead(sensorNum) == LOW) // if low, record time. 
 					{
-
+					
 						endTime = micros();
 						lengthOfTime = endTime - startTime;
 
 						tempSensorValues[sensorNum] = lengthOfTime;
 
 						numSensorsFinished++;/// is it faster or slower to have this here too(?)
-
+						Serial.println(numSensorsFinished);
 					}
 				}
 			}
-
+			
 
 		}
-
-		for (int i = 0; i < 8; i++)
+digitalWrite(13, LOW);
+		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
 			sensorValues[i] = tempSensorValues[i];
 
@@ -88,7 +91,17 @@ namespace LFRobot
 
 		int SensorArray::getLineOffset()
 		{
-			27;
+			float positionRefectanceSum = 0.0;
+			float reflectanceSum = 0.0;
+
+			for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+			{
+				positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];
+				reflectanceSum += sensorValues[i];
+			}
+
+			float L = positionRefectanceSum / reflectanceSum;
+			return L;
 		}
 	
 }

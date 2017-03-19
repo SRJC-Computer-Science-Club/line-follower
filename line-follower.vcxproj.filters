@@ -15,12 +15,8 @@
     <ClInclude Include="__vm\.line-follower.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\Sensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\SensorArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Sensor.h" />
+    <ClInclude Include="SensorArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sensor.cpp">

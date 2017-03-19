@@ -12,7 +12,7 @@ namespace LFRobot
 	{
 	public:
 
-		SensorArray(int pins[]);
+		SensorArray(const int pins[]);
 		~SensorArray();
 		void prepSensors();
 		void readSensorValues();
