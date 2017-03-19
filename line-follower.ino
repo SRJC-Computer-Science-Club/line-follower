@@ -5,7 +5,7 @@ int LED_PIN = 13;
 void setup()
 {
 	motor test (5,6,2);
-    test.setSpeed(0.5);
+    test.setSpeed(0.5); 
 
 	pinMode(LED_PIN, OUTPUT);
 }
