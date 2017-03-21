@@ -70,7 +70,7 @@ namespace LFRobot
 
 						tempSensorValues[sensorNum] = lengthOfTime;
 
-						numSensorsFinished++;/// is it faster or slower to have this here too(?)
+						numSensorsFinished++;
 						Serial.println(numSensorsFinished);
 					}
 				}
@@ -96,7 +96,9 @@ digitalWrite(13, LOW);
 
 			for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 			{
-				positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];
+			positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  //          }
+			//	positionRefectanceSum += -1 + 2 * i / (NUMBER_OF_SENSORS - 1) * sensorValues[i];  //   } was trying to not use the sensor objects
+			
 				reflectanceSum += sensorValues[i];
 			}
 

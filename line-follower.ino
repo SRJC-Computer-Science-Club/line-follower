@@ -15,9 +15,9 @@ void loop()
 	digitalWrite(PIN_LED, HIGH);	// Turn on the LED
 	delay(500);						// Sleep 500 ms
 
-	//SensorArray steven = SensorArray(SENSOR_PINS);
+	SensorArray steven = SensorArray(SENSOR_PINS); // this stops the loop from looping more than once.
 	
-	//steven.prepSensors();
+//	steven.prepSensors();
 
 	digitalWrite(PIN_LED, LOW);
 	delay(500);

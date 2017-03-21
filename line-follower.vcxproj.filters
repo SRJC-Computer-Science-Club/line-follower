@@ -25,8 +25,5 @@
     <ClCompile Include="SensorArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\test-main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
