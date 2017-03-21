@@ -1,6 +1,5 @@
 #include "Sensor.h"
 #include "Arduino.h"
-
 namespace LFRobot
 {
 	Sensor::Sensor(int inPin, float inPosition)
@@ -24,7 +23,8 @@ namespace LFRobot
 
 	bool Sensor::isLow()
 	{
-		return digitalRead(pin) == LOW;
+		return digitalRead(pin) == LOW; 
+		
 	}
 
 	float Sensor::getPosition()

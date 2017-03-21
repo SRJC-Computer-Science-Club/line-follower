@@ -1,5 +1,6 @@
 #include "SensorArray.h"
 #include "Sensor.h"
+#include <Arduino.h>
 
 
 using namespace std;
@@ -55,14 +56,14 @@ namespace LFRobot
 		
 		while (numSensorsFinished < NUMBER_OF_SENSORS)
 		{
-			
+
 			for (int sensorNum = 0; sensorNum < NUMBER_OF_SENSORS; sensorNum++)
 			{
 
 				if (tempSensorValues[sensorNum] == 0)// if array element is empty.
 				{
 					
-					if (digitalRead(sensorNum) == LOW) // if low, record time. 
+					if (digitalRead(sensorNum) == LOW) // if low, record time.
 					{
 					
 						endTime = micros();
@@ -89,21 +90,32 @@ digitalWrite(13, LOW);
 
 
 
-		int SensorArray::getLineOffset()
+	int SensorArray::getLineOffset()
+	{
+		
+	}
+
+
+
+
+
+	void SensorArray::testingSensors(int values[]) {
+		float positionRefectanceSum = 0.0;
+		float reflectanceSum = 0.0;
+
+		for (int i = 0; i < 8; i++)
 		{
-			float positionRefectanceSum = 0.0;
-			float reflectanceSum = 0.0;
 
 			for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 			{
-			positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  //          }
-			//	positionRefectanceSum += -1 + 2 * i / (NUMBER_OF_SENSORS - 1) * sensorValues[i];  //   } was trying to not use the sensor objects
-			
+				positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  //          }
+				//	positionRefectanceSum += -1 + 2 * i / (NUMBER_OF_SENSORS - 1) * sensorValues[i];  //   } was trying to not use the sensor objects
+
 				reflectanceSum += sensorValues[i];
 			}
 
-			float L = positionRefectanceSum / reflectanceSum;
-			return L;
 		}
-	
+		float L = positionRefectanceSum / reflectanceSum;
+
+	}
 }

@@ -2,6 +2,7 @@
 const int PIN_LED = 13;
 using namespace LFRobot;
 const int SENSOR_PINS[NUMBER_OF_SENSORS] = { 20, 19, 18, 17, 16, 15, 11, 12 };
+
 void setup()
 {
 	pinMode(PIN_LED, OUTPUT);
@@ -11,6 +12,7 @@ void setup()
 
 void loop()
 {
+
 	//Serial.println("steven test");
 	digitalWrite(PIN_LED, HIGH);	// Turn on the LED
 	delay(500);						// Sleep 500 ms
@@ -34,4 +36,9 @@ void loop()
 	//delay(500);						// Sleep 500 ms
 
 
+
 }
+
+
+
+
