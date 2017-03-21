@@ -34,9 +34,20 @@ namespace LFRobot
 		{
 			
 		pinMode(pins[i], OUTPUT);
-		digitalWrite(pins[i], HIGH);
+	//	digitalWrite(pins[0], HIGH);
+		
 		//	sensorArray[1]->setMode(OUT);
 		}
+		digitalWrite(20, HIGH);
+		digitalWrite(19, HIGH);
+		digitalWrite(18, HIGH);
+		digitalWrite(17, HIGH);
+		digitalWrite(16, HIGH);
+		digitalWrite(15, HIGH);
+		digitalWrite(11, HIGH);
+		digitalWrite(12, HIGH);
+
+
 	
 	}
 
@@ -79,7 +90,6 @@ namespace LFRobot
 			
 
 		}
-digitalWrite(13, LOW);
 		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 		{
 			sensorValues[i] = tempSensorValues[i];
@@ -90,9 +100,20 @@ digitalWrite(13, LOW);
 
 
 
-	int SensorArray::getLineOffset()
+	float SensorArray::getLineOffset()
 	{
-		
+		float positionRefectanceSum = 0.0;
+		float reflectanceSum = 0.0;
+
+		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		{
+			positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  
+																					
+			reflectanceSum += sensorValues[i];
+		}
+
+		float L = positionRefectanceSum / reflectanceSum;
+		return L;
 	}
 
 
@@ -103,9 +124,6 @@ digitalWrite(13, LOW);
 		float positionRefectanceSum = 0.0;
 		float reflectanceSum = 0.0;
 
-		for (int i = 0; i < 8; i++)
-		{
-
 			for (int i = 0; i < NUMBER_OF_SENSORS; i++)
 			{
 				positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  //          }
@@ -114,8 +132,6 @@ digitalWrite(13, LOW);
 				reflectanceSum += sensorValues[i];
 			}
 
-		}
 		float L = positionRefectanceSum / reflectanceSum;
-
 	}
 }
