@@ -22,7 +22,7 @@ namespace LFRobot
 		float mapMicrosToValue(int i, long lenTime);
 
 		Sensor** sensors;
-		float* sensorValues;
+		long* sensorValues;
 
 		const int nSensors;
 
