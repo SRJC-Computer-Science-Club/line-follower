@@ -15,10 +15,16 @@
     <ClInclude Include="__vm\.line-follower.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\Sensor.h">
+    <ClInclude Include="Sensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\SensorArray.h">
+    <ClInclude Include="SensorArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFollower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,7 +35,7 @@
     <ClCompile Include="SensorArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Steven%27s pc\Documents\GitHub\line-follower\test-main.cpp">
+    <ClCompile Include="LineFollower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
