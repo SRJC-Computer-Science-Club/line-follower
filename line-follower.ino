@@ -4,6 +4,23 @@
 #include "LineFollower.h"
 #include "AveragingQueue.h"
 
+/*
+This is needed in order to use some stuff from the STL.
+DON'T ASK WHY
+*/
+namespace std {
+	void __throw_bad_alloc()
+	{
+		Serial.println("Unable to allocate memory");
+	}
+
+	void __throw_length_error(char const*e)
+	{
+		Serial.print("Length Error :");
+		Serial.println(e);
+	}
+}
+
 using namespace LFRobot;
 
 int LED_PIN = 13;
