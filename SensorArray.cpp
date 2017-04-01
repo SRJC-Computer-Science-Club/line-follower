@@ -2,6 +2,7 @@
 #include "Sensor.h"
 #include <vector>
 #include <Arduino.h>
+#include <math.h>
 
 
 using namespace std;
@@ -12,13 +13,14 @@ namespace LFRobot
 		: nSensors(nSensors), MICROS_TIMEOUT(MICROS_TIMEOUT)
 	{
 		sensors = new Sensor*[nSensors];
-		sensorValues = new float[nSensors];
+		sensorValues = new long[nSensors];
 		this->microsWhite = new long[nSensors];
 		this->microsBlack = new long[nSensors];
 
 		for (int i = 0; i < nSensors; i++)
 		{
-			sensors[i] = new Sensor(pins[i], -1 + 2*i / (nSensors - 1));
+			sensors[i] = new Sensor(pins[i], 2.0f*i / (nSensors - 1.0f) - 1.0f);
+			Serial.println(sensors[i]->getPosition());
 			sensorValues[i] = 0.0f;
 			this->microsWhite[i] = microsWhite[i];
 			this->microsBlack[i] = microsBlack[i];
@@ -78,7 +80,7 @@ namespace LFRobot
 					{
 						long lengthOfTime = endTime - startTime;
 
-						sensorValues[i] = mapMicrosToValue(i, lengthOfTime);
+						sensorValues[i] = lengthOfTime - microsWhite[i];
 
 						numSensorsFinished++;
 						sensors[i]->setRead(true);
@@ -110,7 +112,7 @@ namespace LFRobot
 		readSensorValues();
 
 		float lineCenter = 0;
-		float totalSensorValue = 0;
+		long totalSensorValue = 0;
 		
 		for (int i = 0; i < nSensors; i++)
 		{
@@ -119,6 +121,10 @@ namespace LFRobot
 		}
 
 		lineCenter /= totalSensorValue;
+		if (totalSensorValue == 0)
+		{
+			lineCenter = 0;
+		}
 
 		return lineCenter;
 	}
