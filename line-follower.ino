@@ -27,9 +27,9 @@ void testMotor()
 }
 
 /*
-Moves both motors, forward, backward, left, right, etc
+Moves both motors.
+forward, backward, turn right, turn left, backward left, backward right, pivot right, pivot left, stop.
 */
-
 void testMotorPair() {
 	MotorPair bothMotors;
 	int DELAY = 500;
@@ -37,67 +37,65 @@ void testMotorPair() {
 	//go forward X
 	bothMotors.moveForword(1, 0);
 	delay(DELAY);
-	
-	
-	
 	//go backward  X
 	bothMotors.moveForword(-1, 0);
 	delay(DELAY);
 	
-	//forward left X
+
+
+	//forward right X
 	bothMotors.moveForword(1, 1);
 	delay(DELAY);
-	
-
-
-	// froward right X
+	// froward left X
 	bothMotors.moveForword(1, -1);
 	delay(DELAY);
 	
+
 	//backward left X
 	bothMotors.moveForword(-1, 1);
 	delay(DELAY);
-	
-	
 	// backward right X
 	bothMotors.moveForword(-1, -1);
-	delay(DELAY);
-	
-	
-	//just left ? does not move
-	bothMotors.moveForword(0, 2);
-	delay(DELAY);
-	
-	//just right ? does not move
-	bothMotors.moveForword(0, -2);
 	delay(DELAY);
 
 	
 	
-	//forward left 100% X
+	//pivot right
 	bothMotors.moveForword(1, 2);
 	delay(DELAY);
-		
-	// forward right 100% X
+	//pivot left
 	bothMotors.moveForword(1, -2);
 	delay(DELAY);
 	
-	//dont move X
+	//stop
 	bothMotors.moveForword(0, 0);
 	delay(DELAY);
 }
 
+/*
+Continuously prints the line center position over serial.
+*/
+void testSensorArray()
+{
+	SensorArray sensorArray(PIN_SENSORS, N_SENSORS, MICROS_WHITE, MICROS_BLACK, 1000);
+
+	while (true)
+	{
+		float lineCenter = sensorArray.getLineOffset();
+		Serial.println(lineCenter);
+		delay(100);
+	}
+}
+
 void setup()
 {
+	Serial.begin(57600);
 	pinMode(PIN_MOTOR_STBY, OUTPUT);
 	digitalWrite(PIN_MOTOR_STBY, HIGH);
 	
 	//testMotor();
 	//testMotorPair();
-	Serial.begin(57600);
-
-	LineFollower lineFollower;
-	lineFollower.testSensorArray();
+	testSensorArray();
 }
 
 void loop()
