@@ -69,7 +69,7 @@ namespace LFRobot
 		{
 			if (q.empty())
 			{
-				return DEFAULT_VALUE;
+				return 0;
 			}
 
 			return sum / q.size();
@@ -100,10 +100,8 @@ namespace LFRobot
 		}
 
 	private:
-		const T DEFAULT_VALUE;
-
 		std::queue<T> q;
 		size_t capacity;
-		T sum = DEFAULT_VALUE;
+		T sum = 0;
 	};
 }
