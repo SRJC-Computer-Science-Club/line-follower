@@ -2,7 +2,8 @@
 
 
 MotorPair::MotorPair()
-	: leftMotor(8, 9, 10), rightMotor(5, 6, 4)
+	: rightMotor(PIN_MOTOR_RIGHT_FORWARD, PIN_MOTOR_RIGHT_BACKWARD, PIN_MOTOR_RIGHT_PWM), 
+	leftMotor(PIN_MOTOR_LEFT_FORWARD, PIN_MOTOR_LEFT_BACKWARD, PIN_MOTOR_LEFT_PWM)
 {
 
 }

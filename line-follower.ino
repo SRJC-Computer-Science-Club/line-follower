@@ -1,8 +1,11 @@
 #include "Motor.h"
 #include "MotorPair.h"
 #include <math.h>
-int LED_PIN = 13;
+#include "LineFollower.h"
 
+using namespace LFRobot;
+
+int LED_PIN = 13;
 int PIN_MOTOR_STBY = 7;
 
 /*
@@ -90,8 +93,11 @@ void setup()
 	digitalWrite(PIN_MOTOR_STBY, HIGH);
 	
 	//testMotor();
-	testMotorPair();
-	pinMode(LED_PIN, OUTPUT);
+	//testMotorPair();
+	Serial.begin(57600);
+
+	LineFollower lineFollower;
+	lineFollower.testSensorArray();
 }
 
 void loop()
