@@ -2,7 +2,7 @@
 
 
 MotorPair::MotorPair()
-	: leftMotor(0, 0, 0), rightMotor(0, 0, 0)
+	: leftMotor(8, 9, 10), rightMotor(5, 6, 4)
 {
 
 }

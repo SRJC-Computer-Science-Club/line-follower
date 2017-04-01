@@ -1,4 +1,5 @@
 #include "Motor.h"
+#include "MotorPair.h"
 #include <math.h>
 int LED_PIN = 13;
 
@@ -22,13 +23,74 @@ void testMotor()
 	
 }
 
+/*
+Moves both motors, forward, backward, left, right, etc
+*/
+
+void testMotorPair() {
+	MotorPair bothMotors;
+	int DELAY = 500;
+	
+	//go forward X
+	bothMotors.moveForword(1, 0);
+	delay(DELAY);
+	
+	
+	
+	//go backward  X
+	bothMotors.moveForword(-1, 0);
+	delay(DELAY);
+	
+	//forward left X
+	bothMotors.moveForword(1, 1);
+	delay(DELAY);
+	
+
+
+	// froward right X
+	bothMotors.moveForword(1, -1);
+	delay(DELAY);
+	
+	//backward left X
+	bothMotors.moveForword(-1, 1);
+	delay(DELAY);
+	
+	
+	// backward right X
+	bothMotors.moveForword(-1, -1);
+	delay(DELAY);
+	
+	
+	//just left ? does not move
+	bothMotors.moveForword(0, 2);
+	delay(DELAY);
+	
+	//just right ? does not move
+	bothMotors.moveForword(0, -2);
+	delay(DELAY);
+
+	
+	
+	//forward left 100% X
+	bothMotors.moveForword(1, 2);
+	delay(DELAY);
+		
+	// forward right 100% X
+	bothMotors.moveForword(1, -2);
+	delay(DELAY);
+	
+	//dont move X
+	bothMotors.moveForword(0, 0);
+	delay(DELAY);
+}
+
 void setup()
 {
 	pinMode(PIN_MOTOR_STBY, OUTPUT);
 	digitalWrite(PIN_MOTOR_STBY, HIGH);
 	
-	testMotor();
-	
+	//testMotor();
+	testMotorPair();
 	pinMode(LED_PIN, OUTPUT);
 }
 
