@@ -6,7 +6,7 @@ class MotorPair
 {
 public:
 	MotorPair();
-	void moveForword(float speed, float turning);
+	void moveForward(float speed, float turning);
 
 private:
 	Motor leftMotor;

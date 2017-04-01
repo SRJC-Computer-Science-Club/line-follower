@@ -35,40 +35,40 @@ void testMotorPair() {
 	int DELAY = 500;
 	
 	//go forward X
-	bothMotors.moveForword(1, 0);
+	bothMotors.moveForward(1, 0);
 	delay(DELAY);
 	//go backward  X
-	bothMotors.moveForword(-1, 0);
+	bothMotors.moveForward(-1, 0);
 	delay(DELAY);
 	
 
 
 	//forward right X
-	bothMotors.moveForword(1, 1);
+	bothMotors.moveForward(1, 1);
 	delay(DELAY);
 	// froward left X
-	bothMotors.moveForword(1, -1);
+	bothMotors.moveForward(1, -1);
 	delay(DELAY);
 	
 
 	//backward left X
-	bothMotors.moveForword(-1, 1);
+	bothMotors.moveForward(-1, 1);
 	delay(DELAY);
 	// backward right X
-	bothMotors.moveForword(-1, -1);
+	bothMotors.moveForward(-1, -1);
 	delay(DELAY);
 
 	
 	
 	//pivot right
-	bothMotors.moveForword(1, 2);
+	bothMotors.moveForward(1, 2);
 	delay(DELAY);
 	//pivot left
-	bothMotors.moveForword(1, -2);
+	bothMotors.moveForward(1, -2);
 	delay(DELAY);
 	
 	//stop
-	bothMotors.moveForword(0, 0);
+	bothMotors.moveForward(0, 0);
 	delay(DELAY);
 }
 
@@ -95,7 +95,10 @@ void setup()
 	
 	//testMotor();
 	//testMotorPair();
-	testSensorArray();
+	//testSensorArray();
+
+	LineFollower lineFollower;
+	lineFollower.followLine();
 }
 
 void loop()

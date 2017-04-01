@@ -8,7 +8,7 @@ MotorPair::MotorPair()
 
 }
 
-void MotorPair::moveForword(float speed, float turning)
+void MotorPair::moveForward(float speed, float turning)
 {
 	turning = turning > 2 ? 2 : turning;
 	turning = turning < -2 ? -2 : turning;
