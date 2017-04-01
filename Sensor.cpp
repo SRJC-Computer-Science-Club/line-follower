@@ -31,4 +31,14 @@ namespace LFRobot
 	{
 		return position;
 	}
+
+	bool Sensor::isRead()
+	{
+		return read;
+	}
+
+	void Sensor::setRead(const bool read)
+	{
+		this->read = read;
+	}
 }

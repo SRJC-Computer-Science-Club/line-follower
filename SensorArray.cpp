@@ -1,5 +1,6 @@
 #include "SensorArray.h"
 #include "Sensor.h"
+#include <vector>
 #include <Arduino.h>
 
 
@@ -7,131 +8,118 @@ using namespace std;
 
 namespace LFRobot
 {
-	SensorArray::SensorArray(const int pins[])
+	SensorArray::SensorArray(const int pins[], const int nSensors, const long microsWhite[], const long microsBlack[], const long MICROS_TIMEOUT)
+		: nSensors(nSensors), MICROS_TIMEOUT(MICROS_TIMEOUT)
 	{
-		Sensor* sensorArray[NUMBER_OF_SENSORS];
+		sensors = new Sensor*[nSensors];
+		sensorValues = new float[nSensors];
+		this->microsWhite = new long[nSensors];
+		this->microsBlack = new long[nSensors];
 
-		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		for (int i = 0; i < nSensors; i++)
 		{
-			sensorArray[i] = new Sensor(pins[i], -1 + 2*i / (NUMBER_OF_SENSORS - 1));
+			sensors[i] = new Sensor(pins[i], -1 + 2*i / (nSensors - 1));
+			sensorValues[i] = 0.0f;
+			this->microsWhite[i] = microsWhite[i];
+			this->microsBlack[i] = microsBlack[i];
 		}
 	}
 
 	SensorArray::~SensorArray()
 	{
-		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		for (int i = 0; i < nSensors; i++)
 		{
-			delete sensorArray[i];
+			delete sensors[i];
 		}
+
+		delete[] sensors;
+		delete[] sensorValues;
+		delete[] microsWhite;
+		delete[] microsBlack;
 	}
 
 
 	void SensorArray::prepSensors()
 	{
-		
-	
-		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		for (int i = 0; i < nSensors; i++)
 		{
-			
-		pinMode(pins[i], OUTPUT);
-	//	digitalWrite(pins[0], HIGH);
-		
-		//	sensorArray[1]->setMode(OUT);
+			sensors[i]->setMode(OUT);
 		}
-		digitalWrite(20, HIGH);
-		digitalWrite(19, HIGH);
-		digitalWrite(18, HIGH);
-		digitalWrite(17, HIGH);
-		digitalWrite(16, HIGH);
-		digitalWrite(15, HIGH);
-		digitalWrite(11, HIGH);
-		digitalWrite(12, HIGH);
 
-
-	
+		delayMicroseconds(10);
 	}
 
 
 	void SensorArray::readSensorValues()
 	{
-		long startTime, endTime, lengthOfTime;
-		int tempSensorValues[NUMBER_OF_SENSORS] = { 0 };
+		prepSensors();
+
+		long startTime;
 		int numSensorsFinished = 0;
 
 		startTime = micros();
-		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		for (int i = 0; i < nSensors; i++)
 		{
-			pinMode(pins[i], INPUT);
-		//	sensorArray[i]->setMode(IN);
+			sensors[i]->setMode(IN);
+			sensors[i]->setRead(false);
 		}
 		
-		while (numSensorsFinished < NUMBER_OF_SENSORS)
+		while (numSensorsFinished < nSensors)
 		{
 
-			for (int sensorNum = 0; sensorNum < NUMBER_OF_SENSORS; sensorNum++)
+			for (int i = 0; i < nSensors; i++)
 			{
 
-				if (tempSensorValues[sensorNum] == 0)// if array element is empty.
+				if (!sensors[i]->isRead())
 				{
-					
-					if (digitalRead(sensorNum) == LOW) // if low, record time.
-					{
-					
-						endTime = micros();
-						lengthOfTime = endTime - startTime;
+					long endTime = micros();
 
-						tempSensorValues[sensorNum] = lengthOfTime;
+					if (sensors[i]->isLow() || endTime - startTime > MICROS_TIMEOUT) // if low, record time.
+					{
+						long lengthOfTime = endTime - startTime;
+
+						sensorValues[i] = mapMicrosToValue(i, lengthOfTime);
 
 						numSensorsFinished++;
-						Serial.println(numSensorsFinished);
+						sensors[i]->setRead(true);
 					}
 				}
 			}
-			
-
-		}
-		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
-		{
-			sensorValues[i] = tempSensorValues[i];
-
 		}
 	}
 
-
+	float SensorArray::mapMicrosToValue(int i, long lenTime)
+	{
+		if (lenTime <= microsWhite[i])
+		{
+			return 0.0f;
+		}
+		else if (lenTime >= microsBlack[i])
+		{
+			return 1.0f;
+		}
+		else
+		{
+			return (float)(lenTime - microsWhite[i]) / (float)(microsBlack[i] - microsWhite[i]);
+		}
+	}
 
 
 	float SensorArray::getLineOffset()
 	{
-		float positionRefectanceSum = 0.0;
-		float reflectanceSum = 0.0;
+		readSensorValues();
 
-		for (int i = 0; i < NUMBER_OF_SENSORS; i++)
+		float lineCenter = 0;
+		float totalSensorValue = 0;
+		
+		for (int i = 0; i < nSensors; i++)
 		{
-			positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  
-																					
-			reflectanceSum += sensorValues[i];
+			lineCenter += sensors[i]->getPosition() * sensorValues[i];
+			totalSensorValue += sensorValues[i];
 		}
 
-		float L = positionRefectanceSum / reflectanceSum;
-		return L;
-	}
+		lineCenter /= totalSensorValue;
 
-
-
-
-
-	void SensorArray::testingSensors(int values[]) {
-		float positionRefectanceSum = 0.0;
-		float reflectanceSum = 0.0;
-
-			for (int i = 0; i < NUMBER_OF_SENSORS; i++)
-			{
-				positionRefectanceSum += sensorArray[i]->getPosition() * sensorValues[i];  //          }
-				//	positionRefectanceSum += -1 + 2 * i / (NUMBER_OF_SENSORS - 1) * sensorValues[i];  //   } was trying to not use the sensor objects
-
-				reflectanceSum += sensorValues[i];
-			}
-
-		float L = positionRefectanceSum / reflectanceSum;
+		return lineCenter;
 	}
 }

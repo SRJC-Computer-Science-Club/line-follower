@@ -7,24 +7,29 @@ using namespace std;
 
 namespace LFRobot
 {
-	const int NUMBER_OF_SENSORS = 8;
 	class SensorArray
 	{
 	public:
 
-		SensorArray(const int pins[]);
+		SensorArray(const int pins[], const int nSensors, const long microsWhite[], const long microsBlack[], const long MICROS_TIMEOUT = 10000);
 		~SensorArray();
-		void prepSensors();
-		void readSensorValues();
 		float getLineOffset();
-		void testingSensors(int values[]);
 	
 
 	private:
-		Sensor* sensorArray[8];
-		int pins[NUMBER_OF_SENSORS];
-		int sensorValues[NUMBER_OF_SENSORS];
+		void prepSensors();
+		void readSensorValues();
+		float mapMicrosToValue(int i, long lenTime);
 
+		Sensor** sensors;
+		float* sensorValues;
+
+		const int nSensors;
+
+		long* microsWhite;
+		long* microsBlack;
+
+		const long MICROS_TIMEOUT;
 	};
 
 }
