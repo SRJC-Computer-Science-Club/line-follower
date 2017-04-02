@@ -58,6 +58,7 @@ namespace LFRobot
 		T pop()
 		{
 			T temp = q.front();
+			sum -= temp;
 			q.pop();
 			return temp;
 		}
