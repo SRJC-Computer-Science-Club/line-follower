@@ -1,5 +1,6 @@
 #include "LineFollower.h"
 #include "SensorArray.h"
+#include "PIDController.h"
 
 
 namespace LFRobot
@@ -18,11 +19,17 @@ namespace LFRobot
 
 	void LineFollower::followLine()
 	{
+		PIDController controller(1.0f, 0.0f, 10.0f);
+
+		controller.start(0);
+
 		while (true)
 		{
 			float error = sensorArray->getLineOffset();
 
-			motors->moveForward(ROBOT_SPEED, 1.0f*error);
+			float correction = controller.getCorrection(error);
+
+			motors->moveForward(ROBOT_SPEED, correction);
 		}
 	}
 

@@ -18,5 +18,5 @@ const int PIN_MOTOR_RIGHT_BACKWARD = 9;
 const int PIN_MOTOR_RIGHT_PWM = 10;
 //
 const float ROBOT_SPEED = 1;
-const int VALUES_STORED = 5;
+const int VALUES_STORED = 3;
 const float MIN_LINE_VALUE = 0.05;

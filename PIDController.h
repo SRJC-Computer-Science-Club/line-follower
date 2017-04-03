@@ -16,7 +16,7 @@ namespace LFRobot {
 
 		long prevTime;
 
-		AveragingQueue<float> pastError = AveragingQueue<float>(5);
+		AveragingQueue<float> pastError = AveragingQueue<float>(3);
 		float integralTotal = 0;
 
 		bool firstError = true;

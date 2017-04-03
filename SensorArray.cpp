@@ -130,7 +130,7 @@ namespace LFRobot
 
 		float lineThickness = float(totalSensorValue) / MICROS_TIMEOUT / nSensors;
 
-		if(lineThickness <= MIN_LINE_VALUE)
+		if(lineThickness <= MIN_LINE_VALUE || lineThickness >= .6f)
 		{
 			if (lineData.getAverage() > 0)
 			{
