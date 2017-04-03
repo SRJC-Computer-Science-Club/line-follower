@@ -1,6 +1,7 @@
 #include "LineFollower.h"
 #include "SensorArray.h"
 
+
 namespace LFRobot
 {
 	LineFollower::LineFollower()
@@ -21,7 +22,7 @@ namespace LFRobot
 		{
 			float error = sensorArray->getLineOffset();
 
-			motors->moveForward(.7f, 1.2f*error);
+			motors->moveForward(ROBOT_SPEED, 1.0f*error);
 		}
 	}
 

@@ -126,8 +126,25 @@ namespace LFRobot
 			lineCenter = 0;
 		}
 
-		float lineThickness = float(totalSensorValue) / MICROS_TIMEOUT / N_SENSORS;
 
-		return lineThickness;
+
+		float lineThickness = float(totalSensorValue) / MICROS_TIMEOUT / nSensors;
+
+		if(lineThickness <= MIN_LINE_VALUE)
+		{
+			if (lineData.getAverage() > 0)
+			{
+				lineCenter = 2;
+			}
+			else
+			{
+				lineCenter = -2;
+			}
+		}
+		else {
+			lineData.push(lineCenter * lineThickness);
+		}
+
+		return lineCenter;
 	}
 }

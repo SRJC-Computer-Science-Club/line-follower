@@ -2,6 +2,8 @@
 
 #include <Arduino.h>
 #include "Sensor.h"
+#include "Constants.h"
+#include "AveragingQueue.h"
 
 using namespace std;
 
@@ -20,6 +22,7 @@ namespace LFRobot
 		void prepSensors();
 		void readSensorValues();
 		float mapMicrosToValue(int i, long lenTime);
+		AveragingQueue<float> lineData = AveragingQueue<float>(VALUES_STORED);
 
 		Sensor** sensors;
 		long* sensorValues;
