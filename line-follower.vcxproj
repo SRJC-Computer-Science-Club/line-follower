@@ -88,6 +88,7 @@
     <ClInclude Include="LineFollower.h" />
     <ClInclude Include="Motor.h" />
     <ClInclude Include="MotorPair.h" />
+    <ClInclude Include="PIDController.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="SensorArray.h" />
     <ClInclude Include="__vm\.line-follower.vsarduino.h" />
@@ -96,6 +97,7 @@
     <ClCompile Include="LineFollower.cpp" />
     <ClCompile Include="Motor.cpp" />
     <ClCompile Include="MotorPair.cpp" />
+    <ClCompile Include="PIDController.cpp" />
     <ClCompile Include="SensorArray.cpp" />
     <ClCompile Include="Sensor.cpp" />
   </ItemGroup>
