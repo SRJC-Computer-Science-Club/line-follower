@@ -4,45 +4,40 @@ namespace LFRobot
 {
 
 	PIDController::PIDController(float P, float I, float D)
-		: pConstant(P), iConstant(I), dConstant(D)
+		: Kp(P), Ki(I), Kd(D)
 	{
-		prevError = micros();
+
 	}
 
-	void PIDController::start(const float inError, const long inTime) {
-		cachePreviousError(inError, inTime);
+	void PIDController::start(const float inError) {
+		pastError.push(inError);
+		prevTime = micros();
 		firstError = false;
 	}
 
-	void PIDController::setPID(float& P, float& I, float& D, float currentErr, long dTime) {
-		P = pConstant * currentErr;
-		I = iConstant * integralTotal;
-		D = (dConstant * (currentErr - prevError)) / dTime;
-	}
+	float PIDController::getCorrection(float error) {
 
-	void PIDController::cachePreviousError(const float inError, const long inTime) {
-		prevError = inError;
-		prevTime = inTime;
-	}
-
-	float PIDController::getCorrection(float currentError) {
-		float proportionalTerm;
-		float derivativeTerm;
-		float integralTerm;
-		long currentTime;
-		long deltaTime;
-
-		if (firstError) {
-			start(currentError, currentTime);
+		if (firstError)
+		{
+			start(error);
 		}
 
-		currentTime = micros();
-		deltaTime = currentTime - prevTime;
-		integralTotal += currentError * deltaTime;
+		float pTerm, iTerm, dTerm;
 
-		setPID(proportionalTerm, derivativeTerm, integralTerm, currentError, deltaTime);
-		cachePreviousError(currentError, currentTime);
-		return proportionalTerm + derivativeTerm + integralTerm;
+		long currentTime = micros();
+
+		currentTime = micros();
+		long deltaTime = currentTime - prevTime;
+		integralTotal += error * deltaTime;
+
+		pTerm = Kp * error;
+		iTerm = Ki * integralTotal;
+		dTerm = Kd * (error - pastError.getAverage()) / deltaTime;
+
+		pastError.push(error);
+		prevTime = currentTime;
+
+		return pTerm + iTerm + dTerm;
 	}
 
 }
