@@ -80,7 +80,7 @@ namespace LFRobot
 					{
 						long lengthOfTime = endTime - startTime;
 
-						sensorValues[i] = lengthOfTime - microsWhite[i];
+						sensorValues[i] = MICROS_TIMEOUT * (lengthOfTime - microsWhite[i]) / (MICROS_TIMEOUT - microsWhite[i]);
 
 						numSensorsFinished++;
 						sensors[i]->setRead(true);
@@ -126,6 +126,8 @@ namespace LFRobot
 			lineCenter = 0;
 		}
 
-		return lineCenter;
+		float lineThickness = float(totalSensorValue) / MICROS_TIMEOUT / N_SENSORS;
+
+		return lineThickness;
 	}
 }

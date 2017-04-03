@@ -150,14 +150,14 @@ void setup()
 	
 	//testMotor();
 	//testMotorPair();
-	//testSensorArray();
+	testSensorArray();
 
 	/*
 	LineFollower lineFollower;
 	lineFollower.followLine();
 	*/
 
-	testAveragingQueue();
+	//testAveragingQueue();
 }
 
 void loop()
