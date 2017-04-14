@@ -19,99 +19,32 @@ return ceil((min(x,1) - in_min) * (out_max - out_min) / (in_max - in_min) + out_
 }
 
 class motor
-{
-
-private:
-	float speed;
-	int FORWARD_PIN; 
-	int BACKWARD_PIN;
-	int PWM_PIN; 
-public:
-	class speedRangeOutOfBounds {};
-	motor()
 	{
-		speed = 0.0f;
-		FORWARD_PIN  = 0;
-		BACKWARD_PIN = 0;
-		PWM_PIN      = 0;
-	}
 
-	~motor() {
-	}
+	private:
+		float speed;
+		int FORWARD_PIN; 
+		int BACKWARD_PIN;
+		int PWM_PIN; 
+	public:
+		class speedRangeOutOfBounds {};
+		motor();
+		void halt();
+		void coast();
+		void setSpeed(float speed);
+		void moveForward(int speed, int rotation);	
 
-	motor(int set_forward_pin, int set_backward_pin, int set_pwm_pin) {
-		FORWARD_PIN = set_forward_pin;
-		BACKWARD_PIN = set_backward_pin;
-		PWM_PIN = set_pwm_pin;
+		//gets in a value between -1, 1
+		//sets the speed to that value.
+		//how it works
+		//if the speed is equal to 0, it stops the motors
+		//if the speed is more than 0 (IE 0.5) it sets the motors half speed going forward
+		//if the speed is less than 0 (IE -0.2) it set the motors going slow going backward
 
-		pinMode(FORWARD_PIN,  OUTPUT);
-		pinMode(BACKWARD_PIN, OUTPUT);
-		pinMode(PWM_PIN,      OUTPUT);
+		motor(int set_forward_pin, int set_backward_pin, int set_pwm_pin);
 
-	}
+		int map(float x, float in_min, float in_max, int out_min, int out_max);
 
-	//gets in a value between -1, 1
-	//sets the speed to that value.
-	//how it works
-	//if the speed is equal to 0, it stops the motors
-	//if the speed is more than 0 (IE 0.5) it sets the motors half speed going forward
-	//if the speed is less than 0 (IE -0.2) it set the motors going slow going backward
-
-	void setSpeed(float speed) {
-
-		try {
-			int speedToHardwareVoltage = int(map(abs(speed), 0.0F, 1.0f, 0, 255));
-			if (speed < 1.0f) {
-				throw speedRangeOutOfBounds();
-			}
-			else if (speed > -1.0f) {
-				throw speedRangeOutOfBounds();
-			}
-
-			int speedToHardwareVoltage = int(map(abs(speed), 0.0F, 1.0f, 0, 255));
-
-			if (speed == 0.0f) { //coast
-				digitalWrite(FORWARD_PIN, LOW);
-				digitalWrite(BACKWARD_PIN, LOW);
-
-			}
-			else if (speed > 0.0f) {
-
-				digitalWrite(FORWARD_PIN, HIGH);
-				digitalWrite(BACKWARD_PIN, LOW);
-
-			}
-			else {
-
-				digitalWrite(FORWARD_PIN, LOW);
-				digitalWrite(BACKWARD_PIN, HIGH);
-
-			}
-			analogWrite(PWM_PIN, speedToHardwareVoltage);
-
-		}
-		catch (speedRangeOutOfBounds e) {
-			Serial.print("The Speed out of range error");
-
-		}
-
-	}
-
-	
-	void coast(){
-		setSpeed(0);
-	}
-
-	void halt() {
-		setSpeed(0);
-	}
-
-	void moveForward(int speed, int rotation) {
-		motor right, left;
-
-		right.setSpeed(       rotation  + speed);
-		left .setSpeed( (-1 * rotation) + speed);
-	}
 };
 
 

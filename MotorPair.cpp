@@ -1,22 +1,28 @@
 #include "MotorPair.h"
 
 
-
 MotorPair::MotorPair()
+	: rightMotor(PIN_MOTOR_RIGHT_FORWARD, PIN_MOTOR_RIGHT_BACKWARD, PIN_MOTOR_RIGHT_PWM), 
+	leftMotor(PIN_MOTOR_LEFT_FORWARD, PIN_MOTOR_LEFT_BACKWARD, PIN_MOTOR_LEFT_PWM)
 {
-	left = new motor();
-	right = new motor();
+
 }
 
-
-MotorPair::~MotorPair()
+void MotorPair::moveForward(float speed, float turning)
 {
-	delete left, right;
-}
+	turning = turning > 2 ? 2 : turning;
+	turning = turning < -2 ? -2 : turning;
 
-
-void MotorPair::moveForward(float speed, float offset)
-{
-	left->setSpeed((1 + speed)*offset + speed);
-	right->setSpeed(-(1 + speed)*offset + speed);
+	if (turning >= 0)
+	{
+		//Turn right!
+		leftMotor.setSpeed(speed);
+		rightMotor.setSpeed(speed * (1 - turning));
+	}
+	else
+	{
+		//Turn left!
+		leftMotor.setSpeed(speed * (1 + turning));
+		rightMotor.setSpeed(speed);
+	}
 }
