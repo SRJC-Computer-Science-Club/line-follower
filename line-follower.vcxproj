@@ -47,10 +47,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\wisemonkey\Programs\Arduino\libraries;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\libraries;C:\Users\wisemonkey\Documents\Arduino\libraries;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\cores\arduino;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\cores\arduino\avr;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\variants\arduino_101;C:\Users\wisemonkey\Google Drive\5 Github\line-follower;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\system/libarc32_arduino101/common;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\system/libarc32_arduino101/drivers;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\system/libarc32_arduino101/bootcode;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\system/libarc32_arduino101/framework/include;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\cores\arduino;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\variants\arduino_101;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\0tggfxbe.ox0\Micro Platforms\default\debuggers\VM_DBG;C:\Users\wisemonkey\Programs\Arduino\libraries;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\hardware\arc32\1.0.6\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\0tggfxbe.ox0\Micro Platforms\default\debuggers;C:\Users\wisemonkey\Documents\Arduino\libraries;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\tools\arc-elf32\1.6.9+1.0.1\1.6.9+1.0.1\include;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\tools\arc-elf32\1.6.9+1.0.1\arc-elf32\include;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\tools\arc-elf32\1.6.9+1.0.1\lib\gcc\arc-elf32\4.8.5\include;C:\Users\wisemonkey\AppData\Local\arduino15\packages\Intel\tools\arc-elf32\1.6.9+1.0.1\lib\gcc\arc-elf32\4.8.5\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>C:\Users\wisemonkey\Google Drive\5 Github\line-follower\__vm\.line-follower.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\libraries;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\arduino\avr\libraries;$(ProjectDir)..\..\Arduino\libraries;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\arduino\avr\variants\yun;$(ProjectDir)..\line-follower;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\tools\avr\avr\include\;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\tools\avr\avr\include\avr\;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.line-follower.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>_VMDEBUG=1;__ARDUINO_ARC__;F_CPU=32000000L;ARDUINO=106012;ARDUINO_ARC32_TOOLS;ARDUINO_ARCH_ARC32;__CPU_ARC__;CLOCK_SPEED=32;CONFIG_SOC_GPIO_32;CONFIG_SOC_GPIO_AON;INFRA_MULTI_CPU_SUPPORT;CFW_MULTI_CPU_SUPPORT;HAS_SHARED_MEM;__cplusplus=201103L;GCC_VERSION=40805;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_ATmega32u4__;__AVR_ATmega32U4__;F_CPU=16000000L;ARDUINO=10802;ARDUINO_AVR_YUN;ARDUINO_ARCH_AVR;USB_VID=0x2341;USB_PID=0x8041;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -83,10 +83,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battery.h" />
     <ClInclude Include="motor_class.h" />
     <ClInclude Include="__vm\.line-follower.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Battery.cpp" />
     <ClCompile Include="motor_class.cpp" />
   </ItemGroup>
   <PropertyGroup>

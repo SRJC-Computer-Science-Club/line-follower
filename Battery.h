@@ -1,3 +1,6 @@
+#include <Arduino.h>
+#include <queue>
+
 #pragma once
 // Austin Meyer
 // Project - line_follower
@@ -10,15 +13,16 @@ const int BATTERY_MAX_DESCREPENCY = 5;
 
 class Battery
 {
-	private:
-		int pin;
-		double powerAverage;
-		double lastReading;
-		double internalCounter;
 	public:
 		Battery ();
 		bool checkBattery ();
-		double findAverage ();
+		float findAverage ();
 		void readVoltage ();
+	private:
+		int pin;
+		float powerAverage;
+		float readingsSum;
+		float internalCounter;
+		Queue<float> readings;
 };
 
