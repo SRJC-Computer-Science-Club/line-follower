@@ -36,6 +36,10 @@
     <ClInclude Include="Motor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="__vm\.line-follower.vsarduino.h" />
+    <ClInclude Include="Battery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sensor.cpp">
@@ -51,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MotorPair.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Battery.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -51,10 +51,10 @@
       <ForcedIncludeFiles>$(ProjectDir)__vm\.line-follower.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_ATmega32u4__;__AVR_ATmega32U4__;F_CPU=16000000L;ARDUINO=10802;ARDUINO_AVR_YUN;ARDUINO_ARCH_AVR;USB_VID=0x2341;USB_PID=0x8041;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\libraries;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\teensy\avr\libraries;$(ProjectDir)..\..\Arduino\libraries;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\teensy\avr\cores\teensy3;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\teensy\avr\cores\teensy3\avr;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\teensy\avr\cores\teensy3\util;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\teensy\avr\cores\teensy3\utils;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\teensy\avr\cores\teensy3\avr;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\arm\arm-none-eabi\include;$(ProjectDir)..\line-follower;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\libraries;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\arduino\avr\libraries;$(ProjectDir)..\..\Arduino\libraries;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\arduino\avr\variants\yun;$(ProjectDir)..\line-follower;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\tools\avr\avr\include\;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\tools\avr\avr\include\avr\;$(ProjectDir)..\..\..\Desktop\Portable Programs\arduino-1.8.2\hardware\tools\avr\lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.line-follower.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__HARDWARE_MK20dx256__;__HARDWARE_MK20DX256__;_VMDEBUG=1;__MK20DX256__;TEENSYDUINO=134;ARDUINO=10801;F_CPU=96000000;USB_SERIAL;LAYOUT_US_ENGLISH;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__AVR_ATmega32u4__;__AVR_ATmega32U4__;F_CPU=16000000L;ARDUINO=10802;ARDUINO_AVR_YUN;ARDUINO_ARCH_AVR;USB_VID=0x2341;USB_PID=0x8041;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -88,12 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battery.h" />
-    <ClInclude Include="motor_class.h" />
     <ClInclude Include="__vm\.line-follower.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Battery.cpp" />
-    <ClCompile Include="motor_class.cpp" />
     <ClInclude Include="AveragingQueue.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="LineFollower.h" />
