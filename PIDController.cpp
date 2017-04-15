@@ -11,11 +11,10 @@ namespace LFRobot
 
 	void PIDController::start(const float inError) {
 		pastError.push(inError);
-		prevTime = micros();
 		firstError = false;
 	}
 
-	float PIDController::getCorrection(float error) {
+	float PIDController::getCorrection(float error, float deltaTime) {
 
 		if (firstError)
 		{
@@ -24,10 +23,6 @@ namespace LFRobot
 
 		float pTerm, iTerm, dTerm;
 
-		long currentTime = micros();
-
-		float deltaTime = currentTime - prevTime;
-		deltaTime /= 1000; //Convert us to ms.
 		integralTotal += error * deltaTime;
 
 		pTerm = Kp * error;
@@ -35,7 +30,6 @@ namespace LFRobot
 		dTerm = Kd * (error - pastError.getAverage()) / deltaTime;
 
 		pastError.push(error);
-		prevTime = currentTime;
 
 		return pTerm + iTerm + dTerm;
 	}

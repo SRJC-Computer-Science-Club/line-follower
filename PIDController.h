@@ -9,12 +9,10 @@ namespace LFRobot {
 	public:
 		PIDController(float P, float I, float D);
 		void start(const float inError);
-		float getCorrection(float error);
+		float getCorrection(float error, float deltaTime);
 	private:
 
 		float Kp, Ki, Kd;
-
-		long prevTime;
 
 		AveragingQueue<float> pastError = AveragingQueue<float>(3);
 		float integralTotal = 0;

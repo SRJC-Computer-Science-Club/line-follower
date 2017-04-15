@@ -1,5 +1,10 @@
 #pragma once
 
+const float SPEED_MIN = 0.70f;
+const float SPEED_MAX = 0.9f;
+const float ACCELERATION = 8.0f;
+const float ACCELERATION_POINT = 0.25f;
+
 const int PIN_LED = 13;
 const int N_SENSORS = 8;
 
