@@ -26,7 +26,6 @@ namespace LFRobot
 
 		long currentTime = micros();
 
-		currentTime = micros();
 		float deltaTime = currentTime - prevTime;
 		deltaTime /= 1000; //Convert us to ms.
 		integralTotal += error * deltaTime;
