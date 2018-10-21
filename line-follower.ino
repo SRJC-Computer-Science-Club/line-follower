@@ -2,6 +2,24 @@
 #include "MotorPair.h"
 #include <math.h>
 #include "LineFollower.h"
+#include "AveragingQueue.h"
+
+/*
+This is needed in order to use some stuff from the STL.
+DON'T ASK WHY
+*/
+namespace std {
+	void __throw_bad_alloc()
+	{
+		Serial.println("Unable to allocate memory");
+	}
+
+	void __throw_length_error(char const*e)
+	{
+		Serial.print("Length Error :");
+		Serial.println(e);
+	}
+}
 
 using namespace LFRobot;
 
@@ -87,6 +105,43 @@ void testSensorArray()
 	}
 }
 
+/*
+Expected Serial Output
+0
+3
+8
+28
+5
+10
+41
+*/
+void testAveragingQueue()
+{
+	AveragingQueue<int> intQueue(5);
+
+	Serial.println(intQueue.getAverage());
+
+	for (int i = 1; i <= 5; i++)
+	{
+		intQueue.push(i);
+	}
+	Serial.println(intQueue.getAverage());
+
+	for (int i = 10; i <= 12; i++)
+	{
+		intQueue.push(i);
+	}
+	Serial.println(intQueue.getAverage());
+
+	intQueue.push(102);
+	Serial.println(intQueue.getAverage());
+
+	Serial.println(intQueue.pop());
+	Serial.println(intQueue.pop());
+
+	Serial.println(intQueue.getAverage());
+}
+
 void setup()
 {
 	Serial.begin(57600);
@@ -95,10 +150,14 @@ void setup()
 	
 	//testMotor();
 	//testMotorPair();
-	//testSensorArray();
+//	testSensorArray();
 
+	
 	LineFollower lineFollower;
 	lineFollower.followLine();
+	
+
+	//testAveragingQueue();
 }
 
 void loop()
