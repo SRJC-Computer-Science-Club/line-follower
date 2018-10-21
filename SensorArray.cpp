@@ -81,6 +81,7 @@ namespace LFRobot
 						long lengthOfTime = endTime - startTime;
 
 						sensorValues[i] = MICROS_TIMEOUT * (lengthOfTime - microsWhite[i]) / (MICROS_TIMEOUT - microsWhite[i]);
+						//sensorValues[i] = lengthOfTime;
 
 						numSensorsFinished++;
 						sensors[i]->setRead(true);
@@ -118,18 +119,21 @@ namespace LFRobot
 		{
 			lineCenter += sensors[i]->getPosition() * sensorValues[i];
 			totalSensorValue += sensorValues[i];
-		}
 
+
+		}
+		
 		lineCenter /= totalSensorValue;
 		if (totalSensorValue == 0)
 		{
 			lineCenter = 0;
+			
 		}
 
 
 
 		float lineThickness = float(totalSensorValue) / MICROS_TIMEOUT / nSensors;
-
+	
 		if(lineThickness <= MIN_LINE_VALUE || lineThickness >= .6f)
 		{
 			if (lineData.getAverage() > 0)
@@ -144,6 +148,7 @@ namespace LFRobot
 		else {
 			lineData.push(lineCenter * lineThickness);
 		}
+		Serial.println(lineCenter);
 
 		return lineCenter;
 	}
