@@ -83,6 +83,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Led.h" />
     <ClInclude Include="AveragingQueue.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="LineFollower.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="PIDController.cpp" />
     <ClCompile Include="SensorArray.cpp" />
     <ClCompile Include="Sensor.cpp" />
+    <ClCompile Include="Led.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
